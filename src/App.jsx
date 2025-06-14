@@ -67,7 +67,6 @@ function App() {
   className="h-screen flex items-center justify-center px-4"
 >
   <div className="max-w-6xl w-full bg-white/80 backdrop-blur-md rounded-xl p-8 shadow-2xl">
-    {/* Qidiruv qismi */}
     <div className="flex flex-col md:flex-row gap-4 mb-6">
       <input
         type="text"
@@ -83,8 +82,6 @@ function App() {
         Qidirish
       </button>
     </div>
-
-    {/* Ob-havo natijalari */}
     {loading && <p className="text-center text-gray-600">Yuklanmoqda...</p>}
     {error && <p className="text-center text-red-600">{error}</p>}
 
