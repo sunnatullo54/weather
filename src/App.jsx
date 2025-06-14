@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import img from './assets/img.jpg';
+import img from "./assets/img.jpg";
 
 function App() {
   const [city, setCity] = useState("Toshkent");
@@ -57,55 +57,66 @@ function App() {
   }, []);
 
   return (
-    <header style={{
-        backgroundImage: `url(${img})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
-    className="h-screen flex items-center justify-center">
-      <div className="container">
-        <div className="div bg-white">
-          <div className="flex gap-1">
-            <input
-              type="text"
-              placeholder="qidiruv"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              className="border border-gray-300 rounded px-3 py-2 w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            />
-            <button
-              onClick={getCoordinates}
-              className="bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-            >
-              Qidirish
-            </button>
-          </div>
+    <header
+  style={{
+    backgroundImage: `url(${img})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  }}
+  className="h-screen flex items-center justify-center px-4"
+>
+  <div className="max-w-6xl w-full bg-white/80 backdrop-blur-md rounded-xl p-8 shadow-2xl">
+    {/* Qidiruv qismi */}
+    <div className="flex flex-col md:flex-row gap-4 mb-6">
+      <input
+        type="text"
+        placeholder="Shahar nomi..."
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm bg-white"
+      />
+      <button
+        onClick={getCoordinates}
+        className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-200 shadow"
+      >
+        Qidirish
+      </button>
+    </div>
 
-          <div className="mt-6">
-            {loading && <p>Yuklanmoqda...</p>}
-            {error && <p className="text-red-500">{error}</p>}
-            {forecast.length > 0 && (
-              <div className="div2">
-                <h2 className="text-xl font-semibold mb-4">
-                  {city} uchun 5 kunlik ob-havo
-                </h2>
-                <ul className="flex space-y-2 max-h-96 overflow-y-auto gap-8">
-                  {forecast.map((item) => (
-                    <li key={item.dt} className="border-b border-gray-200 pb-2 border">
-                      <strong>
-                        {new Date(item.dt * 1000).toLocaleDateString()}
-                      </strong>
-                      : {item.main.temp}°C, {item.weather[0].description}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
+    {/* Ob-havo natijalari */}
+    {loading && <p className="text-center text-gray-600">Yuklanmoqda...</p>}
+    {error && <p className="text-center text-red-600">{error}</p>}
+
+    {forecast.length > 0 && (
+      <>
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          {city} uchun 5 kunlik ob-havo
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+          {forecast.map((item) => (
+            <div
+              key={item.dt}
+              className="bg-white rounded-xl p-5 text-center shadow hover:shadow-lg transition"
+            >
+              <p className="text-lg font-semibold text-gray-800 mb-2">
+                {new Date(item.dt * 1000).toLocaleDateString()}
+              </p>
+              <p className="text-2xl font-bold text-blue-600">
+                {item.main.temp.toFixed(1)}°C
+              </p>
+              <p className="text-sm text-gray-500 capitalize mt-2">
+                {item.weather[0].description}
+              </p>
+            </div>
+          ))}
         </div>
-      </div>
-    </header>
+      </>
+    )}
+  </div>
+</header>
+
   );
 }
 
