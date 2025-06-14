@@ -36,3 +36,7 @@ button {
   flex-direction: column;
   gap: 20px;
 }
+
+.div3 {
+  padding: 10px;
+}

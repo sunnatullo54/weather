@@ -58,62 +58,61 @@ function App() {
 
   return (
     <header
-  style={{
-    backgroundImage: `url(${img})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  }}
-  className="h-screen flex items-center justify-center px-4"
->
-  <div className="max-w-6xl w-full bg-white/80 backdrop-blur-md rounded-xl p-8 shadow-2xl">
-    <div className="flex flex-col md:flex-row gap-4 mb-6">
-      <input
-        type="text"
-        placeholder="Shahar nomi..."
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm bg-white"
-      />
-      <button
-        onClick={getCoordinates}
-        className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-200 shadow"
-      >
-        Qidirish
-      </button>
-    </div>
-    {loading && <p className="text-center text-gray-600">Yuklanmoqda...</p>}
-    {error && <p className="text-center text-red-600">{error}</p>}
-
-    {forecast.length > 0 && (
-      <>
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          {city} uchun 5 kunlik ob-havo
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-          {forecast.map((item) => (
-            <div
-              key={item.dt}
-              className="bg-white rounded-xl p-5 text-center shadow hover:shadow-lg transition"
-            >
-              <p className="text-lg font-semibold text-gray-800 mb-2">
-                {new Date(item.dt * 1000).toLocaleDateString()}
-              </p>
-              <p className="text-2xl font-bold text-blue-600">
-                {item.main.temp.toFixed(1)}°C
-              </p>
-              <p className="text-sm text-gray-500 capitalize mt-2">
-                {item.weather[0].description}
-              </p>
-            </div>
-          ))}
+      style={{
+        backgroundImage: `url(${img})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+      className="h-screen flex items-center justify-center px-4"
+    >
+      <div className="div3 max-w-6xl w-full bg-white/80 backdrop-blur-md rounded-xl p-8 shadow-2xl">
+        <div className="flex flex-col md:flex-row gap-4 mb-6">
+          <input
+            type="text"
+            placeholder="Shahar nomi..."
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm bg-white"
+          />
+          <button
+            onClick={getCoordinates}
+            className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-200 shadow"
+          >
+            Qidirish
+          </button>
         </div>
-      </>
-    )}
-  </div>
-</header>
+        {loading && <p className="text-center text-gray-600">Yuklanmoqda...</p>}
+        {error && <p className="text-center text-red-600">{error}</p>}
 
+        {forecast.length > 0 && (
+          <>
+            <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+              {city} uchun 5 kunlik ob-havo
+            </h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+              {forecast.map((item) => (
+                <div
+                  key={item.dt}
+                  className="bg-white rounded-xl p-5 text-center shadow hover:shadow-lg transition"
+                >
+                  <p className="text-lg font-semibold text-gray-800 mb-2">
+                    {new Date(item.dt * 1000).toLocaleDateString()}
+                  </p>
+                  <p className="text-2xl font-bold text-blue-600">
+                    {item.main.temp.toFixed(1)}°C
+                  </p>
+                  <p className="text-sm text-gray-500 capitalize mt-2">
+                    {item.weather[0].description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </header>
   );
 }
 
