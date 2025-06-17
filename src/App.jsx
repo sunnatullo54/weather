@@ -7,7 +7,7 @@ function App() {
   const [forecast, setForecast] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const API_KEY = "b9b6cc04936d930de780b1049782003c";
+  const API_KEY = import.meta.env.VITE_API_KEY;
 
   const getCoordinates = () => {
     setLoading(true);

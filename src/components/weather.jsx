@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function Weather() {
-  const API_KEY = "035ea391074a3b63d02e3175fddc6a92";
+  const API_KEY = import.meta.env.VITE_API_KEY;
   const [city, setCity] = useState('');
   const [coords, setCoords] = useState(null);
   const [forecast, setForecast] = useState(null);
